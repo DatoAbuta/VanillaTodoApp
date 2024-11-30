@@ -17,6 +17,7 @@ myForm.addEventListener("submit", (e) => {
     const newObj = {
       text: newTodo,
       completed: false,
+      time: new Date().toLocaleTimeString(),
     };
 
     todos.push(newObj);
@@ -29,6 +30,9 @@ myForm.addEventListener("submit", (e) => {
 function scriptToHtml(todo) {
   todoUl.innerHTML = "";
   todo.forEach((todo, index) => {
+    let dateP = document.createElement("p");
+    dateP.textContent = todo.time;
+
     let li = document.createElement("li");
     li.textContent = todo.text;
     if (todo.completed) {
@@ -56,5 +60,6 @@ function scriptToHtml(todo) {
     todoUl.appendChild(li);
     todoUl.appendChild(deleteBtn);
     todoUl.appendChild(completedBtn);
+    todoUl.appendChild(dateP);
   });
 }
